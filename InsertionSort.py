@@ -27,7 +27,7 @@ def move_left2(array, i):
         array[i], array[i-1] = array[i-1], array[i]
         i -= 1
 
-status = input("Do you want to sort in ascending(A) / descending(D) order?")
+status = input("Do you want to sort in ascending(A) or descending(D) order?")
 
 print("Starting timer..")
 start_time = time.time()
