@@ -30,7 +30,7 @@ status = input("Do you want to sort in ascending(A) / descending(D) order?")
 
 print("Starting timer..")
 start_time = time.time()
-print("Calling iSort function now..")
+print("Calling iSort function now...")
 output = iSort([1, 4, 9, 0, 77, 8, 99], status)
 print(f"Output: {output}")
 time_taken = time.time() - start_time
