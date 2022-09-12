@@ -5,8 +5,8 @@ import random, time
 # Best case: 1, Worst Case: n, Average = (n+1)/2
 # Big O: O(n) = n
 
-# using while loop
 def lSearch1(array, key):
+    '''Linear Search with While Loop'''
     i = 0
     while i < len(array):
         if array[i] == key:
@@ -14,8 +14,9 @@ def lSearch1(array, key):
         i += 1
     return -1
 
-# using for loop
+
 def lSearch2(array, key):
+    '''Linear Search with For Loop'''
     i = 0
     for i in range(len(array)):
         if array[i] == key:
