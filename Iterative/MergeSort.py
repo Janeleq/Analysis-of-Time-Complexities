@@ -1,3 +1,14 @@
+# Merge Sort 
+# Big O: O(nlogn)
+# Group Size (GS) = 1 at first level; doubles at each successive level
+# After k steps, we cover an array of size 2^k = n ; No of steps k = logn
+# Total number of elements per level = n
+# Takes logn levels to go from n group size of 1 to a group size of n
+# Total no of steps = no of levels x no of steps at each level = logn x n
+# No of pairs to be merge at level g = n/(2*g)
+# No of groups in specific level g = n/gs => say n = 8 and gs = 2 => we know there are 4 groups in the second level
+
+# Iterate over increasing group sizes
 def mSort(array):
     groupsize = 1 #start from groups of size 1
     while groupsize < len(array):
@@ -5,6 +16,7 @@ def mSort(array):
         groupsize *= 2 #double the size of the group
     return array
 
+# Iterate over pairs of groups of a given size
 def mergeGroups(array, groupsize):
     i = 0
     while i < len(array):
@@ -12,6 +24,9 @@ def mergeGroups(array, groupsize):
         array[i:j] = merge(array, i, groupsize)
         i = i + (2 * groupsize)
 
+# Iterate over items in each pair of groups
+# Worst case: (2*g )
+# For group size gs, max number of moves = 2 x gs
 def merge(array, i ,groupsize):
     resultArray = [] #new array to store merged result
     firstGroup = array[i:i+groupsize] #end of first group
