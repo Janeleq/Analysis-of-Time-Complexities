@@ -1,7 +1,7 @@
 import random, time #track the complexity of different functions
 
 # Insertion sort
-# Best case: O(n), Worst case: O(n^2)
+# Best case: n, Worst case: n^2
 # Big O: O(n^2)
 
 def iSort(array, status):
