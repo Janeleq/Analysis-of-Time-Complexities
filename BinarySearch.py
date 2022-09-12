@@ -2,6 +2,8 @@ import random, time
 
 # Binary Search
 # Good for big datasets; faster than Linear Search
+# Best Case: O(1), Worst Case: O(logN)
+# Big O: O(logN)
 
 def bSearch(array, target):
     lower = -1
