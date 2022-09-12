@@ -37,10 +37,9 @@ def bSearch(array, target):
     return -1
 
 
-bSearch([1,2,3,4,6,5], 5)
+bSearch([1,2,3,4,6,5], 3)
 
 # print("Starting Timer...")
 # start_time = time.time()
 # time_taken = time.time() - start_time
 # print(f"Execution Time: {time_taken}")
-# print(f"Index Position: {output}")
