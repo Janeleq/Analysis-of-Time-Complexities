@@ -1,13 +1,11 @@
 import random, time
-import cProfile, pstats, io
 from line_profiler import LineProfiler
 # Binary Search
 # Good for big datasets; faster than Linear Search
 # Best Case: 1, Worst Case: logN + 1 
 # Big O: O(logN)
 
-# Use cProfile to profile a function
-profiler = LineProfiler()
+# Use Line_Profiler Python Library to profile a function
 
 def profile(func):
     def inner(*args, **kwargs):
@@ -33,11 +31,12 @@ def bSearch(array, target):
             upper = mid
         else:
             lower = mid #search upper region
-    print_stats()
     return -1
 
-
-bSearch([1,2,3,4,6,5], 3)
+profiler = LineProfiler()
+lp_wrapper = profiler(bSearch)
+lp_wrapper([1,2,3,4,6,5], 3)
+profiler.print_stats()
 
 # print("Starting Timer...")
 # start_time = time.time()
