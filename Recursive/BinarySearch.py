@@ -9,8 +9,8 @@ def rbsearch(array, target, lower=None, upper=None):
         return -1           # not found
 
     mid = (lower + upper)//2
-    if array[mid] == target: # success
-        return mid
+    if array[mid] == target: # base case
+        return mid          # success
     elif array[mid] < target: # search upper region
         return rbsearch(array, target, mid, upper)
     else:                      # search lower region 
