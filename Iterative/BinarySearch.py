@@ -17,7 +17,7 @@ def profile(func):
 def print_stats():
     profiler.print_stats()
 
-
+# if lower = 0, upper has to change to len(array)-1
 @profile
 def bSearch(array, target):
     lower = -1
