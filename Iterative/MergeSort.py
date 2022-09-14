@@ -1,4 +1,4 @@
-# Merge Sort 
+# Merge Sort (Bottom-up approach)
 # Big O: O(nlogn)
 # Group Size (GS) = 1 at first level; doubles at each successive level
 # After k steps, we cover an array of size 2^k = n ; No of steps k = logn
