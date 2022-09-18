@@ -13,6 +13,13 @@ from tkinter import ttk
 # peek: inspects the data element on top of the stack without removing it
 # pop: removes and retrieves the data element on top of the stack
 
+# Queue
+# FIFO property
+# 3 primary operations: enqueue, dequeue, peek
+# Enqueue: places a new data element to tail of the queue
+# Dequeue: removes data element at the head of queue
+
+
 # Stack & Recursion
 # Stack can be used to create a non-recursive version of a recursion
 class Stack:
@@ -195,6 +202,7 @@ def rbsearch_stack(a, k):
             s.push(mid)
             s.push(upper)
 
+# Stack and Queue Usage: Palindrome
 def is_palindrome(word):
     s = Stack()
     q = Queue()
