@@ -1,5 +1,6 @@
 # Dijkstra's Algorithm 
 # Calculate the greatest common divisor (GCD) of 2 integers using recursion
+# Small number of operations compared to Brute Force Algo
 
 # Iterative version
 def dijkstra_iter(a,b):
