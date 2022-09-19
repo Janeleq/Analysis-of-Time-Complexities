@@ -1,4 +1,6 @@
 # Python implementation of stack and queue
+from hashlib import new
+from inspect import stack
 import threading
 from queue import Queue as Q
 from time import sleep
@@ -9,15 +11,15 @@ from tkinter import ttk
 # Stack 
 # LIFO property: last item placed on the stack will be the first item removed
 # 3 primary operations: push, pop, peek
-# push: places a new data element on the top of a stack, s
-# peek: inspects the data element on top of the stack without removing it
-# pop: removes and retrieves the data element on top of the stack
+# push: places a new data element on the top of a stack; O(n) as require each element to shift by one position
+# peek: inspects the data element on top of the stack without removing it; O(1) as simply access an array element by index
+# pop: removes and retrieves the data element on top of the stack; O(n) as require each element to shift by one position
 
 # Queue
 # FIFO property
 # 3 primary operations: enqueue, dequeue, peek
-# Enqueue: places a new data element to tail of the queue
-# Dequeue: removes data element at the head of queue
+# Enqueue: places a new data element to tail of the queue; O(1) as we just insert an element at the end of the array
+# Dequeue: removes data element at the head of queue; O(n) as require each element to shift by one position
 
 
 # Stack & Recursion
@@ -48,8 +50,12 @@ class Stack:
         return len(self.array)
         
     def display(self):
-        print(str(self.array) + " <= top")
-        
+        print(str(self.array) + " <= top")  
+
+stack_obj = Stack()
+stack_obj.array = [1, 4, 3]
+print(stack_obj.peek())
+
 # Python implementation of queue
 class Queue:
     

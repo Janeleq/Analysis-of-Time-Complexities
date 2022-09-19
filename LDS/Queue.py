@@ -1,7 +1,7 @@
 # Python implementation of queue
 
 # Queue
-# FIFO property
+# FIFO property (next item accessed is the earliest item put into the queue)
 # 3 primary operations: enqueue, dequeue, peek
 # Enqueue: places a new data element to tail of the queue
 # Dequeue: removes data element at the head of queue
