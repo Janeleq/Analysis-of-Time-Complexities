@@ -55,48 +55,7 @@ class Stack:
 stack_obj = Stack()
 stack_obj.array = [1, 4, 3]
 print(stack_obj.peek())
-
-# Python implementation of queue
-class Queue:
-    
-    def __init__(self):
-        self.array = []
-    
-    def enqueue(self, item):
-        self.array.append(item)
         
-    def dequeue(self):
-        if len(self.array) > 0:
-            first = self.array[0]
-            self.array = self.array[1:]
-            return first
-        else:
-            print("Queue is empty")
-    
-    def peek(self):
-        if len(self.array) == 0:
-            print("Queue is empty")
-        else:
-            return self.array[0]
-
-    def count(self):
-        return len(self.array)
-
-    def display(self):
-        print("head => " + str(self.array))
-        
-class PriorityQueue(Queue):
-    def __init__(self, order = "ascending"):
-        self.array = []
-        
-        # value is True if its ascending order
-        self.order = order
-    
-    def enqueue(self, item):
-        self.array.append(item)
-        
-        # sort the array everytime something is enqueued, don't reverse if order is ascending
-        self.array = sorted(self.array, reverse = self.order != "ascending")
         
 # checks whether text contains balanced braces using stack
 def check_braces(text):
@@ -139,91 +98,13 @@ def dequeue(li):
         del li[0]
         return item
 
-# Stack replacing recursive version of fibonacci
-# 1. Create a new stack
-# 2. Push initial parameters onto a stack
-# 3. Iterate till stack is empty (pop parameter from stack, if base case dont push anymore, else push onto the stack parameters used in recurson)
-def fibonacci_stack(n):
-    s = Stack()
-    s.push(n)
-    result = 0
-    while s.count() > 0:
-        s.display()
-        current = s.pop()
-        if current == 0:
-            result += 0
-        elif current == 1:
-            result += 1
-        else:
-            s.push(current - 2)
-            s.push(current - 1)
-    
-    return result
 
-# Recursive version of Fibonacci
-def fibonacci(n):
-    print(n) # Show value at each step
-    if n == 0:
-        return 0
-    elif n == 1:
-        return 1
-    else:
-        return fibonacci(n-1) + fibonacci(n-2)
 
         
-def rbsearch(a, k, lower = None, upper = None):
-    if lower == None:
-        lower = -1
-    if upper == None:
-        upper = len(a)
-    mid = (lower + upper) // 2
-    if mid == lower:
-        return -1
-    if k == a[mid]:
-        return mid
-    if k < a[mid]:
-        return rbsearch(a, k, lower, mid)
-    if k > a[mid]:
-        return rbsearch(a, k, mid, upper) 
 
-def rbsearch_stack(a, k):
-    lower = -1
-    upper = len(a)
-    s = Stack()
-    s.push(lower)
-    s.push(upper)
-    
-    while s.count() > 0:
-        upper = s.pop()
-        lower = s.pop()
-        mid = (lower + upper) // 2
-        if mid == lower:
-            return -1
-        if k == a[mid]:
-            return mid 
-        if k < a[mid]:
-            s.push(lower)
-            s.push(mid)
-        if k > a[mid]:
-            s.push(mid)
-            s.push(upper)
 
-# Stack and Queue Usage: Palindrome
-def is_palindrome(word):
-    s = Stack()
-    q = Queue()
-    for ch in word:
-        s.push(ch)
-        q.enqueue(ch)
-    while s.count() > 0:
-        left = s.pop()
-        right = q.dequeue()
-        if left != right:
-            return False
-    return True
             
 # visualization classes and methods 
-
 # thread class to draw the list
 class Drawer(threading.Thread):
     def __init__(self, q):
