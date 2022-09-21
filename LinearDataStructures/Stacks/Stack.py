@@ -1,12 +1,4 @@
-# Python implementation of stack and queue
-from hashlib import new
-from inspect import stack
-import threading
 from queue import Queue as Q
-from time import sleep
-from tkinter import *
-from tkinter import ttk
-
 
 # Stack 
 # LIFO property: last item placed on the stack will be the first item removed
@@ -15,23 +7,19 @@ from tkinter import ttk
 # peek: inspects the data element on top of the stack without removing it; O(1) as simply access an array element by index
 # pop: removes and retrieves the data element on top of the stack; O(n) as require each element to shift by one position
 
-# Queue
-# FIFO property
-# 3 primary operations: enqueue, dequeue, peek
-# Enqueue: places a new data element to tail of the queue; O(1) as we just insert an element at the end of the array
-# Dequeue: removes data element at the head of queue; O(n) as require each element to shift by one position
-
-
-# Stack & Recursion
-# Stack can be used to create a non-recursive version of a recursion
-class Stack:
+# -- IMPLEMENTATION 1 --
+# Top is at position len(array)-1
+# Bottom is at position 0 (first index of array)
+class StackOne:
     
     def __init__(self):
         self.array = []
     
+    # O(1)
     def push(self, item):
         self.array.append(item)
         
+    # O(n)
     def pop(self):
         if len(self.array) > 0:
             last = self.array[-1]
@@ -39,7 +27,7 @@ class Stack:
             return last
         else:
             print("Stack is empty")
-    
+    # O(1)
     def peek(self):
         if len(self.array) == 0:
             print("Stack is empty")
@@ -52,11 +40,50 @@ class Stack:
     def display(self):
         print(str(self.array) + " <= top")  
 
-stack_obj = Stack()
-stack_obj.array = [1, 4, 3]
-print(stack_obj.peek())
+# -- IMPLEMENTATION 2 --
+# Top is at position 0 (first index of array)
+# Bottom is at position len(array) - 1
+class StackTwo:
+    
+    def __init__(self):
+        self.array = []
+    
+    # O(n)
+    def push(self, item):
+        self.array.insert(0, item)
+    
+    # O(1)
+    def pop(self):
+        if len(self.array) > 0:
+            last = self.array.pop(0)
+            return last
+        else:
+            print("Stack is empty")
+    
+    # O(1)
+    def peek(self):
+        if len(self.array) == 0:
+            print("Stack is empty")
+        else:
+            return self.array[0]
+    
+    def count(self):
+        return len(self.array)
         
-        
+    def display(self):
+        print("top => " + str(self.array))
+
+stack_obj1 = StackOne()
+stack_obj1.push(3)
+stack_obj1.push(1)
+stack_obj1.display()
+
+
+stack_obj2 = StackTwo()
+stack_obj2.push(3)
+stack_obj2.push(1)
+stack_obj2.display()
+
 # checks whether text contains balanced braces using stack
 def check_braces(text):
     s = Stack()
@@ -106,124 +133,124 @@ def dequeue(li):
             
 # visualization classes and methods 
 # thread class to draw the list
-class Drawer(threading.Thread):
-    def __init__(self, q):
-        threading.Thread.__init__(self)
-        self.daemon = True
-        self.q = q
+# class Drawer(threading.Thread):
+#     def __init__(self, q):
+#         threading.Thread.__init__(self)
+#         self.daemon = True
+#         self.q = q
    
-    def run(self):
-        root = Tk()
-        root.columnconfigure(0, weight=1)
-        root.rowconfigure(0, weight=1)
-        canvas = Canvas(root)
-        canvas.grid(column=0, row=0, sticky=(N, W, E, S))
+#     def run(self):
+#         root = Tk()
+#         root.columnconfigure(0, weight=1)
+#         root.rowconfigure(0, weight=1)
+#         canvas = Canvas(root)
+#         canvas.grid(column=0, row=0, sticky=(N, W, E, S))
         
-        # inner method called update
-        def update():
-            canvas.delete('all')
+#         # inner method called update
+#         def update():
+#             canvas.delete('all')
             
-            # gets item from the queue passed by the threads
-            item = self.q.get(True)
+#             # gets item from the queue passed by the threads
+#             item = self.q.get(True)
             
-            # gets array from the item
-            list = item
-            if type(item) != type([]):
-                list = item.array
+#             # gets array from the item
+#             list = item
+#             if type(item) != type([]):
+#                 list = item.array
             
-            # represents first block (to be coloured)
-            first = None
+#             # represents first block (to be coloured)
+#             first = None
             
-            # the starting Y co-ordinate for the blocks
-            startY = 10
+#             # the starting Y co-ordinate for the blocks
+#             startY = 10
             
-            # assigns the relevant labels depending on the type of list
-            if len(list) > 0:
-                top = ""
-                bottom = ""
-                if type(item) == Stack:
-                    item_name = "Stack"
-                    top = "Top"
-                    bottom = "Bottom"
-                elif type(item) == Queue:
-                    item_name = "Queue"
-                    top = "Head"
-                    bottom = "  Tail"
-                elif type(item) == PriorityQueue:
-                    item_name = "Priority queue"
-                    top = "Head"
-                    bottom = "  Tail"
-                else:
-                    item_name = "List"
-                    top = "Top"
-                    bottom = "Bottom"
+#             # assigns the relevant labels depending on the type of list
+#             if len(list) > 0:
+#                 top = ""
+#                 bottom = ""
+#                 if type(item) == Stack:
+#                     item_name = "Stack"
+#                     top = "Top"
+#                     bottom = "Bottom"
+#                 elif type(item) == Queue:
+#                     item_name = "Queue"
+#                     top = "Head"
+#                     bottom = "  Tail"
+#                 elif type(item) == PriorityQueue:
+#                     item_name = "Priority queue"
+#                     top = "Head"
+#                     bottom = "  Tail"
+#                 else:
+#                     item_name = "List"
+#                     top = "Top"
+#                     bottom = "Bottom"
                 
-                # adds the top text label
-                label = canvas.create_text((38, startY), text=top, anchor='nw')
-                startY += 20
+#                 # adds the top text label
+#                 label = canvas.create_text((38, startY), text=top, anchor='nw')
+#                 startY += 20
                     
-                # reverse the list if its a stack
-                if type(item) is Stack:
-                    list = list[::-1]
+#                 # reverse the list if its a stack
+#                 if type(item) is Stack:
+#                     list = list[::-1]
                     
-                for e in list:
-                    rectangle = canvas.create_rectangle((10, startY, 90, startY + 30))
-                    label = canvas.create_text((48-2.2*len(str(e)), startY + 10), text=e, anchor='nw')
-                    startY += 30
+#                 for e in list:
+#                     rectangle = canvas.create_rectangle((10, startY, 90, startY + 30))
+#                     label = canvas.create_text((48-2.2*len(str(e)), startY + 10), text=e, anchor='nw')
+#                     startY += 30
                     
-                    # gets reference to top block
-                    if first == None:
-                        first = rectangle
+#                     # gets reference to top block
+#                     if first == None:
+#                         first = rectangle
                     
-                # colour first block to be red
-                canvas.itemconfig(first, fill='red')
+#                 # colour first block to be red
+#                 canvas.itemconfig(first, fill='red')
                 
-                # adds the bottom text label
-                startY += 5
-                label = canvas.create_text((33, startY), text=bottom, anchor='nw')
+#                 # adds the bottom text label
+#                 startY += 5
+#                 label = canvas.create_text((33, startY), text=bottom, anchor='nw')
                 
-            else:
-                item_name = ""
-                if type(item) == Stack:
-                    item_name = "Stack"
-                elif type(item) == Queue:
-                    item_name = "Queue"
-                elif type(item) == PriorityQueue:
-                    item_name = "Priority queue"
-                else:
-                    item_name = "List"
+#             else:
+#                 item_name = ""
+#                 if type(item) == Stack:
+#                     item_name = "Stack"
+#                 elif type(item) == Queue:
+#                     item_name = "Queue"
+#                 elif type(item) == PriorityQueue:
+#                     item_name = "Priority queue"
+#                 else:
+#                     item_name = "List"
                     
-                label = canvas.create_text((20, startY), text= item_name + " is empty", anchor='nw')
+#                 label = canvas.create_text((20, startY), text= item_name + " is empty", anchor='nw')
             
-            # reupdate the drawing thread
-            root.after(100, update)
+#             # reupdate the drawing thread
+#             root.after(100, update)
 
-        # call the update method, and mainloop to keep this method running
-        root.after(100, update)
-        root.mainloop()
+#         # call the update method, and mainloop to keep this method running
+#         root.after(100, update)
+#         root.mainloop()
 
-# thread class to update the list
-class ListUpdater(threading.Thread):
-    def __init__(self, list, q):
-        self.thread = threading.Thread.__init__(self)
-        self.daemon = True
-        self.list = list
-        self.q = q
+# # thread class to update the list
+# class ListUpdater(threading.Thread):
+#     def __init__(self, list, q):
+#         self.thread = threading.Thread.__init__(self)
+#         self.daemon = True
+#         self.list = list
+#         self.q = q
     
-    def run(self):
-        # if drawing thread is terminated
-        while True:
-            if self.q.empty():
-                self.q.put(self.list)
+#     def run(self):
+#         # if drawing thread is terminated
+#         while True:
+#             if self.q.empty():
+#                 self.q.put(self.list)
                 
-            # to set the list to update every half second
-            sleep(0.5)
+#             # to set the list to update every half second
+#             sleep(0.5)
     
-# method to create two threads for updating list and drawing list
-def view_list(list, q = Q()):
-    draw_thread = Drawer(q)
-    update_thread = ListUpdater(list, q)
-    draw_thread.start()
-    update_thread.start()
-    return
+# # method to create two threads for updating list and drawing list
+# def view_list(list, q = Q()):
+#     draw_thread = Drawer(q)
+#     update_thread = ListUpdater(list, q)
+#     draw_thread.start()
+#     update_thread.start()
+#     return
 

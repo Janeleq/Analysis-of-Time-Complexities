@@ -1,11 +1,10 @@
 # Python implementation of queue
 
 # Queue
-# FIFO property (next item accessed is the earliest item put into the queue)
+# FIFO property
 # 3 primary operations: enqueue, dequeue, peek
-# Enqueue: places a new data element to tail of the queue
-# Dequeue: removes data element at the head of queue
-
+# Enqueue: places a new data element to tail of the queue; O(1) as we just insert an element at the end of the array
+# Dequeue: removes data element at the head of queue; O(n) as require each element to shift by one position
 class Queue:
     
     def __init__(self):
