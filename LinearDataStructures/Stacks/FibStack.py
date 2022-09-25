@@ -1,9 +1,10 @@
+from Stack import StackOne
 # Stack replacing recursive version of fibonacci
 # 1. Create a new stack
 # 2. Push initial parameters onto a stack
 # 3. Iterate till stack is empty (pop parameter from stack, if base case dont push anymore, else push onto the stack parameters used in recurson)
 def fibonacci_stack(n):
-    s = Stack()
+    s = StackOne()
     s.push(n)
     result = 0
     while s.count() > 0:
