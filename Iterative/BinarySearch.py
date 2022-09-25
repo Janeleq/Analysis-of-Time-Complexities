@@ -19,7 +19,7 @@ def print_stats():
 
 # if lower = 0, upper has to change to len(array)-1
 @profile
-def bSearch(array, target):
+def bSearch1(array, target):
     lower = -1
     upper = len(array)
 
@@ -33,8 +33,21 @@ def bSearch(array, target):
             lower = mid #search upper region
     return -1
 
+def bSearch2(array, target):
+    lower = 0
+    upper = len(array) - 1
+
+    mid = (lower + upper) // 2
+    if target == array[mid]:
+        return mid
+    elif target < array[mid]:
+        upper = mid
+    else:
+        lower = mid
+    return -1
+    
 profiler = LineProfiler()
-lp_wrapper = profiler(bSearch)
+lp_wrapper = profiler(bSearch1)
 lp_wrapper([1,2,3,4,6,5], 3)
 profiler.print_stats()
 
