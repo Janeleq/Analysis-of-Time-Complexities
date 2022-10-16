@@ -1,6 +1,6 @@
 # Python implementation of queue
 
-# Queue
+# Queue (Enter and exiting a door)
 # FIFO property
 # 3 primary operations: enqueue, dequeue, peek
 # Enqueue: places a new data element to tail of the queue; O(1) as we just insert an element at the end of the array

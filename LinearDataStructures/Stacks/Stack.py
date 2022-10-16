@@ -1,11 +1,11 @@
 from queue import Queue as Q
 
-# Stack 
+# Stack (pile of books)
 # LIFO property: last item placed on the stack will be the first item removed
 # 3 primary operations: push, pop, peek
 # push: places a new data element on the top of a stack; O(n) as require each element to shift by one position
 # peek: inspects the data element on top of the stack without removing it; O(1) as simply access an array element by index
-# pop: removes and retrieves the data element on top of the stack; O(n) as require each element to shift by one position
+# pop: removes and retrieves the data element on top of the stack/most recent element; O(n) as require each element to shift by one position
 
 # -- IMPLEMENTATION 1 --
 # Top is at position len(array)-1
